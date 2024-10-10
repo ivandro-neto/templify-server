@@ -1,6 +1,6 @@
 import { client } from "../../database";
 
-export const UpdateVariables = async (body: IUpdateVariableRequest, tempId: string) => {
+export const UpdateVariables = async (body: IUpdateVariableRequest, tempId: string, varId: string) => {
   const currentTemplate = await client.template.findFirst({
     where: { id: tempId },
   });
@@ -9,7 +9,7 @@ export const UpdateVariables = async (body: IUpdateVariableRequest, tempId: stri
     throw new Error("Cannot find a template with this id.");
 
   const currentVar = await client.variable.findFirst({
-    where: { id: body.id },
+    where: { id: varId },
   });
 
   if (!currentVar)
@@ -17,7 +17,7 @@ export const UpdateVariables = async (body: IUpdateVariableRequest, tempId: stri
 
   // Atualiza a variável usando os campos necessários no Prisma
   const updatedVariable = await client.variable.update({
-    where: { id: body.id }, // Use o identificador correto
+    where: { id: varId }, // Use o identificador correto
     data: {
       key: body.key,
       value: body.value,

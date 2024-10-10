@@ -11,8 +11,7 @@ app.use(express.json())
 app.get("/", (req, res) =>{
   res.send("Running")
 })
-
-app.use(VariableRoute)
+app.use('/api/v1',VariableRoute)
 
 const Run = async () =>{
   try{
