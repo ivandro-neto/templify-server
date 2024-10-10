@@ -3,9 +3,9 @@ import { createVariable, deleteVariable, getVariables, updateVariable } from "..
 
 const router = express.Router();
 
-router.get('/api/v1/:tempid/variables', getVariables);
-router.post('/api/v1/:tempid/variable', createVariable);
-router.patch('/api/v1/:tempid/variable', updateVariable);
-router.delete('/api/v1/:tempid/variable/:varid', deleteVariable);
+router.get('/:tempid/variables', getVariables);
+router.post('/:tempid/variable', createVariable);
+router.patch('/:tempid/variable/:varid', updateVariable);
+router.delete('/:tempid/variable/:varid', deleteVariable);
 
 export default router;

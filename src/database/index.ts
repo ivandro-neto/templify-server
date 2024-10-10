@@ -7,7 +7,7 @@ export const connect = async () =>{
     await client.$connect();
     return console.log("Connected.")
   } catch (error) {
-    throw new Error("Cannot connect to the database...")
+      console.error("Cannot connect to the database...", error.message)
   }
 }
 

@@ -30,10 +30,10 @@ export const getVariables = async (req: Request, res: Response, next: NextFuncti
 };
 
 export const updateVariable = async (req: Request, res: Response, next: NextFunction) => {
-  const tempId = req.params.tempId
+  const {tempid, varid} = req.params
   
   try {
-    const result = await UpdateVariables(req.body, tempId);
+    const result = await UpdateVariables(req.body, tempid, varid);
     res.status(200).json({ status: 200, data: { variable: result } });
   } catch (error) {
     next(error)
