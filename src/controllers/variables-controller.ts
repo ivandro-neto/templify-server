@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
-import { CreateVariables } from "../usecases/variablesUseCases/create-variables-usecase";
-import { GetVariables } from "../usecases/variablesUseCases/get-variable-usecase";
-import { UpdateVariables } from "../usecases/variablesUseCases/update-variables-usecase";
-import { DeleteVariable } from "../usecases/variablesUseCases/delete-variable-usecase";
+import { CreateVariables } from "../usecases/variables/create-variables-usecase";
+import { GetVariables } from "../usecases/variables/get-variable-usecase";
+import { UpdateVariables } from "../usecases/variables/update-variables-usecase";
+import { DeleteVariable } from "../usecases/variables/delete-variable-usecase";
 
 // Criação de variável
 export const createVariable = async (req: Request, res: Response, next: NextFunction) => {

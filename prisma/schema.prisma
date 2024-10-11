@@ -47,6 +47,7 @@ model Card {
   id          String      @id @default(uuid())
   content     String      @db.Text
   order       Int
+  tag         String
   templateId  String
   template    Template    @relation(fields: [templateId], references: [id])
   createdAt   DateTime    @default(now())

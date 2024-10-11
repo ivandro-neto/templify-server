@@ -1,25 +1,30 @@
-import dotenv from "dotenv"
-import express from "express"
-import {connect} from "./database"
-import VariableRoute from "./routes/variables-routes"
+import dotenv from "dotenv";
+import express from "express";
+import type {Request, Response} from 'express'
+import { connect } from "./database";
+import Routes from "./routes";
+import SwaggerDocs from "./utils/swagger";
+dotenv.config();
 
-dotenv.config()
+const app = express();
+app.use(express.json());
 
-const app = express()
-app.use(express.json())
 
-app.get("/", (req, res) =>{
-  res.send("Running")
-})
-app.use('/api/v1',VariableRoute)
+app.get("/helloworld", (req: Request, res: Response) => {
+  res.send("Running...");
+});
 
-const Run = async () =>{
-  try{
-    app.listen(process.env.PORT, () => console.log(`running:: http://localhost:${process.env.PORT}/`));
-    connect()
-  }catch(err){
-    console.error(err)
+app.use('/api/v1', Routes);
+
+const Run = async (): Promise<void> => {
+  try {
+    await connect();
+    const port = process.env.PORT || 3000;
+    app.listen(port, () => console.log(`running:: http://localhost:${port}/`));
+    SwaggerDocs(app, Number(port));
+  } catch (err) {
+    console.error(err);
   }
-}
+};
 
 Run();
