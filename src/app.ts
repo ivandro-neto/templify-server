@@ -3,7 +3,6 @@ import express from "express";
 import type {Request, Response} from 'express'
 import { connect } from "./database";
 import Routes from "./routes";
-import SwaggerDocs from "./utils/swagger";
 dotenv.config();
 
 const app = express();
@@ -21,7 +20,6 @@ const Run = async (): Promise<void> => {
     await connect();
     const port = process.env.PORT || 3000;
     app.listen(port, () => console.log(`running:: http://localhost:${port}/`));
-    SwaggerDocs(app, Number(port));
   } catch (err) {
     console.error(err);
   }
